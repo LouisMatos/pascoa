@@ -1,0 +1,52 @@
+version: "3"
+
+services:
+  db_pascoa:
+    image: mysql:5.7
+    container_name: db_pascoa
+    ports:
+      - 3306:3306
+    networks:
+      - net_back
+    volumes:
+      - mysql:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=pascoa
+      - MYSQL_USER=luismatos
+      - MYSQL_PASSWORD=teste123456
+      - MYSQL_ROOT_PASSWORD=teste123456
+    deploy:
+      resources:
+        limits:
+          cpus: '0.30'
+          memory: 512M
+          
+  microservico:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        - JAR_FILE=pascoa-microservice-api.jar
+    image: testeluismatos/microservico:0.0.1
+    container_name: microservico
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db_pascoa:3306/pascoa?autoReconnect=true&useSSL=false
+      - SPRING_PROFILES_ACTIVE=mysql
+    ports:
+      - 7070:8080
+    networks:
+      - net_back
+    depends_on:
+      - db_pascoa
+    deploy:
+      resources:
+        limits:
+          cpus: '0.30'
+          memory: 512M
+          
+networks:
+  net_back:
+  
+volumes:
+  mysql: null
+  

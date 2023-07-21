@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mysql://${DATABASE_HOST:127.0.0.1}:${DATABASE_PORT:3306}/pascoa
+    username: ${DATABASE_USER:root}
+    password: ${DATABASE_PASSWD:teste123456}
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: ${DATABASE_UPDATE:update}
+    generate-ddl: true
+    show-sql: false
+    
