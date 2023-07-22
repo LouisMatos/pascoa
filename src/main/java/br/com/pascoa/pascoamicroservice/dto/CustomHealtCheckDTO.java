@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CustomHealtChectDTO {
+public class CustomHealtCheckDTO {
 
   private String status;
 

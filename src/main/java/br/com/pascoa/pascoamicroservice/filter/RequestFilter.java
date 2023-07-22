@@ -22,7 +22,7 @@ public class RequestFilter implements Filter {
 
   @Override
   public void init(FilterConfig filterConfig) throws ServletException {
-    log.info("Inicio");
+    /* TODO document why this method is empty */
   }
 
   @Override
@@ -45,7 +45,7 @@ public class RequestFilter implements Filter {
 
   @Override
   public void destroy() {
-    // do nothing.
+    /* TODO document why this method is empty */
   }
 
 }

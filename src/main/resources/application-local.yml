@@ -1,12 +1,17 @@
 spring:
   jpa:
-    hibernate.ddl-auto: update
+    hibernate.ddl-auto: create
     database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
   datasource:
-    url: jdbc:h2:mem:pascoa_db
+    url: jdbc:h2:mem:testdb
     driverClassName: org.h2.Driver
     username: sa
-    password: password
+    password: 
   h2:
    console:
+   enabled: true
    path: /h2-console
