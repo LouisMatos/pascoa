@@ -20,6 +20,7 @@ public class ClienteService {
     return clienteRepository.findAll().stream().map(ClienteDTO::new).parallel().toList();
   }
 
+  @Transactional(readOnly = true)
   public ClienteDTO findById(Long id) {
     return new ClienteDTO(clienteRepository.findById(id)
         .orElseThrow(() -> new NotFoundException("Cliente não encontrado!")));
