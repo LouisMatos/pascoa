@@ -1,8 +1,10 @@
 package br.com.pascoa.pascoamicroservice.dto.cliente;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import br.com.pascoa.pascoamicroservice.entities.cliente.Cliente;
 import br.com.pascoa.pascoamicroservice.entities.cliente.Endereco;
 import br.com.pascoa.pascoamicroservice.entities.cliente.Telefone;
@@ -19,8 +21,10 @@ public class ClienteDTO {
 
   private Long id;
 
+  @JsonIgnore
   private Set<Telefone> telefone = new HashSet<>();
 
+  @JsonIgnore
   private Set<Endereco> endereco = new HashSet<>();
 
   private String nome;
@@ -35,7 +39,7 @@ public class ClienteDTO {
 
   private String email;
 
-  private Date dataCadastro;
+  private LocalDateTime dataCadastro;
 
   public ClienteDTO(Cliente cliente) {
     this.id = cliente.getId();

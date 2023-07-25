@@ -1,8 +1,0 @@
-package br.com.pascoa.pascoamicroservice.repository;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-import br.com.pascoa.pascoamicroservice.entities.cliente.Telefone;
-
-public interface EnderecoRepository extends JpaRepository<Telefone, Long>{
-
-}

@@ -1,11 +1,13 @@
 package br.com.pascoa.pascoamicroservice.entities.cliente;
 
 import static jakarta.persistence.CascadeType.ALL;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import br.com.pascoa.pascoamicroservice.dto.cliente.ClienteDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -31,6 +33,8 @@ import lombok.NoArgsConstructor;
 @Data
 @EqualsAndHashCode(exclude = {"telefone", "endereco"})
 public class Cliente {
+
+
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,8 +66,22 @@ public class Cliente {
   @Email
   private String email;
 
-  @Column(insertable = false, updatable = false)
+  @Column(insertable = true, updatable = false)
   @Temporal(TemporalType.TIMESTAMP)
-  private Date dataCadastro;
+  private LocalDateTime dataCadastro;
+
+  public Cliente(ClienteDTO dto) {
+    this.telefone = dto.getTelefone();
+    this.endereco = dto.getEndereco();
+    this.nome = dto.getNome();
+    this.dataNascimento = dto.getDataNascimento();
+    this.cpf = dto.getCpf();
+    this.instagram = dto.getInstagram();
+    this.facebook = dto.getFacebook();
+    this.email = dto.getEmail();
+    this.dataCadastro = LocalDateTime.now();
+  }
+
+
 
 }

@@ -48,6 +48,7 @@ INSERT INTO tb_cliente (nome, cpf, instagram, facebook, email) VALUES ('Davi Nel
 
 --- telefones ---
 INSERT INTO tb_telefone (ddd, numero, whatsapp, observacao, id_cliente_fk) VALUES (83, '32356050', false, 'trabalho fds',   '1');
+INSERT INTO tb_telefone (ddd, numero, whatsapp, observacao, id_cliente_fk) VALUES (83, '991152198', true, null,             '1');
 INSERT INTO tb_telefone (ddd, numero, whatsapp, observacao, id_cliente_fk) VALUES (83, '996185740', true, null, 			'2');
 INSERT INTO tb_telefone (ddd, numero, whatsapp, observacao, id_cliente_fk) VALUES (83, '990690637', false, null, 			'3');
 INSERT INTO tb_telefone (ddd, numero, whatsapp, observacao, id_cliente_fk) VALUES (83, '32354900', false, null, 			'4');
@@ -87,6 +88,8 @@ INSERT INTO tb_telefone (ddd, numero, whatsapp, observacao, id_cliente_fk) VALUE
 
 --- enderecos ---
 INSERT INTO tb_endereco (rua, numero, bairro, complemento, id_cliente_fk) VALUES ('Rua Estudante Júlio Cezar Soares da Silva', '287', 'Valentina de Figueiredo', null,	 '1'); 
+INSERT INTO tb_endereco (rua, numero, bairro, complemento, id_cliente_fk) VALUES ( 'Rua Mestre Júlio Sarmento', '768', 'Bancários', null, 								 '1');
+INSERT INTO tb_endereco (rua, numero, bairro, complemento, id_cliente_fk) VALUES ( 'Rua Severino Neves de Lima', '185', 'Mangabeira', null,								 '1');
 INSERT INTO tb_endereco (rua, numero, bairro, complemento, id_cliente_fk) VALUES ('Rua Severina de Freitas', '362', 'Mandacaru', null,									 '2'); 
 INSERT INTO tb_endereco (rua, numero, bairro, complemento, id_cliente_fk) VALUES ('Rua Francisco Guimarães', '650', 'Ipês', null,										 '3'); 
 INSERT INTO tb_endereco (rua, numero, bairro, complemento, id_cliente_fk) VALUES ('Rua Aluísio Bezerra da Silva', '207', 'Portal do Sol', null,							 '4'); 
