@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +27,7 @@ public class ClienteController {
 
   @Autowired
   private TelefoneService telefoneService;
-  
+
   @Autowired
   private EnderecoService enderecoService;
 
@@ -44,15 +45,48 @@ public class ClienteController {
   public ResponseEntity<List<TelefoneDTO>> buscarTelefoneClientID(@PathVariable("id") Long id) {
     return new ResponseEntity<>(telefoneService.buscarTelefoneClientID(id), HttpStatus.OK);
   }
-  
+
   @GetMapping(value = "/{id}/enderecos")
   public ResponseEntity<List<EnderecoDTO>> buscarEnderecoClientID(@PathVariable("id") Long id) {
     return new ResponseEntity<>(enderecoService.buscarEnderecoClientID(id), HttpStatus.OK);
   }
-  
+
   @PostMapping
-  public ResponseEntity<ClienteDTO> cadastrarCliente(@RequestBody ClienteDTO dto){
-    return new ResponseEntity<>(clienteService.cadastrarCliente(dto), HttpStatus.CREATED);
+  public ResponseEntity<ClienteDTO> cadastrarCliente(@RequestBody ClienteDTO dto) {
+    return new ResponseEntity<>(clienteService.cadastrarCliente(dto), HttpStatus.OK);
   }
 
+  @PostMapping(value = "/{id}/enderecos")
+  public ResponseEntity<EnderecoDTO> cadastrarEnderecoCliente(@PathVariable("id") Long id,
+      @RequestBody EnderecoDTO dto) {
+    return new ResponseEntity<>(enderecoService.cadastrarEnderecoCliente(id, dto),
+        HttpStatus.CREATED);
+  }
+
+  @PostMapping(value = "/{id}/telefones")
+  public ResponseEntity<TelefoneDTO> cadastrarTelefoneCliente(@PathVariable("id") Long id,
+      @RequestBody TelefoneDTO dto) {
+    return new ResponseEntity<>(telefoneService.cadastrarTelefoneCliente(id, dto),
+        HttpStatus.CREATED);
+  }
+
+  @DeleteMapping(value = "/{id}")
+  public ResponseEntity<Void> deletarCliente(@PathVariable("id") Long id) {
+    clienteService.deletarCliente(id);
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+  }
+
+  @DeleteMapping(value = "/{idCliente}/enderecos/{idEndereco}")
+  public ResponseEntity<Void> deletarEnderecoCliente(@PathVariable("idCliente") Long idCliente,
+      @PathVariable("idEndereco") Long idEndereco) {
+    enderecoService.deletarEnderecoCliente(idCliente, idEndereco);
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+  }
+  
+  @DeleteMapping(value = "/{idCliente}/telefones/{idTelefone}")
+  public ResponseEntity<Void> deletarTelefoneCliente(@PathVariable("idCliente") Long idCliente,
+      @PathVariable("idTelefone") Long idTelefone) {
+    telefoneService.deletarTelefoneCliente(idCliente, idTelefone);
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+  }
 }

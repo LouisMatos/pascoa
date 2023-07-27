@@ -2,6 +2,7 @@ package br.com.pascoa.pascoamicroservice.entities.cliente;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import br.com.pascoa.pascoamicroservice.dto.cliente.EnderecoDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -49,5 +50,20 @@ public class Endereco {
 
   @JsonIgnore
   private String cep;
+
+  public Endereco(EnderecoDTO dto) {
+    this.cliente = dto.getCliente();
+    this.rua = dto.getRua();
+    this.bairro = dto.getBairro();
+    this.complemento = dto.getComplemento();
+    this.numero = dto.getNumero();
+    this.cep = dto.getCep();
+  }
+
+  @Override
+  public String toString() {
+    return "Endereco [rua=" + rua + ", bairro=" + bairro + ", complemento=" + complemento
+        + ", numero=" + numero + ", cep=" + cep + "]";
+  }
 
 }

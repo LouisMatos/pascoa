@@ -1,6 +1,5 @@
 package br.com.pascoa.pascoamicroservice.entities.cliente;
 
-import static jakarta.persistence.CascadeType.ALL;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
@@ -8,6 +7,7 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import br.com.pascoa.pascoamicroservice.dto.cliente.ClienteDTO;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -42,12 +42,12 @@ public class Cliente {
   private Long id;
 
   @OneToMany(fetch = FetchType.EAGER, targetEntity = Telefone.class, mappedBy = "cliente",
-      orphanRemoval = true, cascade = {ALL})
+      orphanRemoval = true, cascade = CascadeType.REMOVE)
   @Builder.Default
   private Set<Telefone> telefone = new HashSet<>();
 
   @OneToMany(fetch = FetchType.EAGER, targetEntity = Endereco.class, mappedBy = "cliente",
-      orphanRemoval = true, cascade = {ALL})
+      orphanRemoval = true, cascade = CascadeType.REMOVE)
   @Builder.Default
   private Set<Endereco> endereco = new HashSet<>();
 

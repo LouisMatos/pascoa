@@ -30,4 +30,10 @@ public class ClienteService {
     return new ClienteDTO(clienteRepository.saveAndFlush(new Cliente(dto)));
   }
 
+  public void deletarCliente(Long id) {
+    Cliente cliente = clienteRepository.findById(id)
+        .orElseThrow(() -> new NotFoundException("Cliente não encontrado!"));
+    clienteRepository.delete(cliente);
+  }
+
 }

@@ -1,6 +1,7 @@
 package br.com.pascoa.pascoamicroservice.entities.cliente;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import br.com.pascoa.pascoamicroservice.dto.cliente.TelefoneDTO;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,5 +43,17 @@ public class Telefone {
   private String numero;
   private boolean whatsapp;
   private String observacao;
+
+
+
+  public Telefone(TelefoneDTO dto) {
+    this.cliente = dto.getCliente();
+    this.ddd = dto.getDdd();
+    this.numero = dto.getNumero();
+    this.whatsapp = dto.isWhatsapp();
+    this.observacao = dto.getObservacao();
+  }
+
+
 
 }

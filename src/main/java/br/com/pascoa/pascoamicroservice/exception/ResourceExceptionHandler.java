@@ -19,4 +19,13 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
     return ResponseEntity.status(HttpStatus.NOT_FOUND)
         .body(new StandardError(HttpStatus.NOT_FOUND, e.getMessage(), request.getRequestURI()));
   }
+
+  @ExceptionHandler(UnprocessableEntity.class)
+  public ResponseEntity<StandardError> unprocessableEntity(UnprocessableEntity e,
+      HttpServletRequest request) {
+    log.info(e.getMessage());
+    return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(new StandardError(
+        HttpStatus.UNPROCESSABLE_ENTITY, e.getMessage(), request.getRequestURI()));
+  }
+
 }
